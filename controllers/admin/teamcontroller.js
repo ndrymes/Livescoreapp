@@ -31,8 +31,6 @@ class  teamManager {
     async viewTeam(req,res){
             try {
                 const cachedTeams = await cached.teamCached()
-                console.log(cachedTeams);
-                
               if (cachedTeams){
                  return res.status(200).send({
                      source:"cached",

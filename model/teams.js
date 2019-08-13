@@ -24,7 +24,7 @@ const TeamSchema = new mongoose.Schema({
         trim:true
     },
     founded:{
-        type:Date
+        type:String
     },
     clubcolors:{
         type:String,

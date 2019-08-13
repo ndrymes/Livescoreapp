@@ -65,7 +65,6 @@ UserSchema.methods.generateAuthToken = async function() {
 UserSchema.statics.verifyDetails = async function(email,password) {
     try {
         var user = await User.find({email})
-        console.log(user);
         
         if (user.length===0) {
             
@@ -80,7 +79,6 @@ UserSchema.statics.verifyDetails = async function(email,password) {
       
       
      const isMatch =await bcrypt.compare(password,user[0].password)
-     console.log(isMatch);
      
      if (!isMatch) { 
         
