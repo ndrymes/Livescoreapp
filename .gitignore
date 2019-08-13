@@ -1,0 +1,7 @@
+.DS_Store
+.dockerignore
+.env
+bash.exe.stackdump
+config/
+node_modules/
+package-lock.json
