@@ -26,9 +26,11 @@ class AdminController {
             const user= await services.Signup(params)
             const token = await user.generateAuthToken()
              const storedToken = cached.tokenServices(token)
+             
             if(!user){
                 throw new Error()
             }
+            req.session.userId=user._id
             res.status(200).send({
                 data:user,
                 code:200,
@@ -51,9 +53,25 @@ class AdminController {
            email,
            password
        }
-       console.log(params);
+       try {
+        if (req.session.userId) {
+            
+            const user= await services.session(req.session.userId)
+            return res.status(200).send({
+             message:'you are in session',
+             data:user,
+             code:200,
+             error:false,
+         }
+        )}
+       } catch (error) {
+            
+       }
+    
        
        try {
+           
+        
         const login= await services.Login(params.email,params.password)
         
               if(!login){
@@ -63,6 +81,7 @@ class AdminController {
                     message:"wrong Email or password combination"
                 })
               }
+              req.session.userId=login[0]._id
               res.status(200).send({
                 data:login,
                 code:200,
