@@ -4,11 +4,13 @@ const redis= require('redis')
 const redisClient = redis.createClient()
 const redisStore =require('connect-redis')(session)
 const app = express()
+
 const bodyParser = require('body-parser')
 const mongoose = require('./db/mongoose')
 const admin = require('./routes/admin/Fixturesmangement/admin')
 const user = require('./routes/user.js/user')
 const adminTeam = require('./routes/admin/teammanagemenet/admin')
+
 
 redisClient.on('error',(err)=> {
     console.log('Redis error:',err);
